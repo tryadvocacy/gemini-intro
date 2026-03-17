@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 AI Frontier Explorer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/cdn.min.js"></script>
+    <style>
+        [x-cloak] { display: none !important; }
+        body { 
+            background-color: #020617; 
+            color: #f8fafc; 
+            font-family: ui-sans-serif, system-ui, sans-serif; 
+            background-image: radial-gradient(circle at top right, #1e293b, transparent 40%),
+                              radial-gradient(circle at bottom left, #0f172a, transparent 40%);
+            background-attachment: fixed;
+        }
+        .glass-panel { 
+            background: rgba(30, 41, 59, 0.4); 
+            backdrop-filter: blur(16px); 
+            border: 1px solid rgba(255, 255, 255, 0.05); 
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+        .text-gradient-gemini { background: linear-gradient(135deg, #60a5fa, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .text-gradient-openai { background: linear-gradient(135deg, #34d399, #10b981); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .text-gradient-anthropic { background: linear-gradient(135deg, #fb923c, #fca5a5); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        .tab-btn { transition: all 0.3s ease; }
+        .tab-btn:hover { background: rgba(255, 255, 255, 0.1); }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #020617; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
+    </style>
+</head>
+<body class="min-h-screen text-slate-200" x-data="{ activeTab: 'gemini' }">
+
+    <div class="max-w-6xl mx-auto px-4 py-12">
+        <header class="text-center mb-16">
+            <h1 class="text-5xl font-extrabold mb-4 tracking-tight text-white">
+                The 2026 <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-emerald-400 to-orange-400">AI Frontier</span>
+            </h1>
+            <p class="text-xl text-slate-400 max-w-2xl mx-auto">
+                An interactive exploration of the industry's most powerful models: Google Gemini, OpenAI GPT, and Anthropic Claude.
+            </p>
+        </header>
+
+        <div class="flex flex-wrap justify-center gap-4 mb-12">
+            <button @click="activeTab = 'gemini'" 
+                    :class="activeTab === 'gemini' ? 'ring-2 ring-blue-500 bg-blue-500/20 text-blue-300' : 'bg-slate-800/50 text-slate-400'"
+                    class="tab-btn px-8 py-4 rounded-2xl font-semibold text-lg flex items-center gap-3 backdrop-blur-md border border-slate-700">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L15 9L22 12L15 15L12 22L9 15L2 12L9 9L12 2Z"/></svg>
+                Google Gemini
+            </button>
+            <button @click="activeTab = 'openai'" 
+                    :class="activeTab === 'openai' ? 'ring-2 ring-emerald-500 bg-emerald-500/20 text-emerald-300' : 'bg-slate-800/50 text-slate-400'"
+                    class="tab-btn px-8 py-4 rounded-2xl font-semibold text-lg flex items-center gap-3 backdrop-blur-md border border-slate-700">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                OpenAI
+            </button>
+            <button @click="activeTab = 'anthropic'" 
+                    :class="activeTab === 'anthropic' ? 'ring-2 ring-orange-500 bg-orange-500/20 text-orange-300' : 'bg-slate-800/50 text-slate-400'"
+                    class="tab-btn px-8 py-4 rounded-2xl font-semibold text-lg flex items-center gap-3 backdrop-blur-md border border-slate-700">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                Anthropic Claude
+            </button>
+        </div>
+
+        <div class="relative min-h-[500px]">
+            
+            <div x-show="activeTab === 'gemini'" x-transition.opacity.duration.500ms x-cloak class="space-y-8">
+                <div class="text-center mb-8">
+                    <h2 class="text-4xl font-bold text-gradient-gemini mb-2">Gemini 3 Series</h2>
+                    <p class="text-slate-400">The ultimate engine for multimodal reasoning and agentic workflows.</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="glass-panel p-8 rounded-3xl relative overflow-hidden group">
+                        <div class="absolute -right-20 -top-20 w-48 h-48 bg-blue-500/20 blur-3xl rounded-full group-hover:bg-blue-500/30 transition-all"></div>
+                        <h3 class="text-2xl font-bold text-white mb-4">Gemini 3.1 Pro</h3>
+                        <ul class="space-y-4 text-slate-300">
+                            <li class="flex items-start gap-3">
+                                <span class="text-blue-400 mt-1">●</span>
+                                <div><strong>Unprecedented Fluid Reasoning:</strong> Verified 77.1% on ARC-AGI-2, more than doubling previous frontier models.</div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-blue-400 mt-1">●</span>
+                                <div><strong>Deep Think Mode:</strong> Granular cognitive control allowing developers to scale reasoning depth dynamically.</div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-blue-400 mt-1">●</span>
+                                <div><strong>Vibe Coding:</strong> Translates abstract concepts and themes directly into functional code and interactive SVGs.</div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="glass-panel p-8 rounded-3xl relative overflow-hidden group">
+                        <div class="absolute -right-20 -top-20 w-48 h-48 bg-indigo-500/20 blur-3xl rounded-full group-hover:bg-indigo-500/30 transition-all"></div>
+                        <h3 class="text-2xl font-bold text-white mb-4">Gemini 3 Flash</h3>
+                        <ul class="space-y-4 text-slate-300">
+                            <li class="flex items-start gap-3">
+                                <span class="text-indigo-400 mt-1">●</span>
+                                <div><strong>Frontier Speed:</strong> Matches 2.5 Pro performance while operating 3x faster with 30% fewer tokens.</div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-indigo-400 mt-1">●</span>
+                                <div><strong>Agentic Vision:</strong> Actively writes Python code to draw visual scratchpads, reducing OCR hallucinations.</div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-indigo-400 mt-1">●</span>
+                                <div><strong>Ecosystem Tools:</strong> Natively integrates with Nano Banana 2 for state-of-the-art conversational image editing.</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="glass-panel p-6 rounded-2xl flex items-center justify-between">
+                    <div>
+                        <div class="text-sm text-slate-400 uppercase tracking-wide font-semibold">Context Window</div>
+                        <div class="text-2xl font-bold text-white">1,000,000+ Tokens</div>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-sm text-slate-400 uppercase tracking-wide font-semibold">SWE-Bench Verified</div>
+                        <div class="text-2xl font-bold text-blue-400">80.6%</div>
+                    </div>
+                </div>
+            </div>
+
+            <div x-show="activeTab === 'openai'" x-transition.opacity.duration.500ms x-cloak class="space-y-8">
+                <div class="text-center mb-8">
+                    <h2 class="text-4xl font-bold text-gradient-openai mb-2">OpenAI GPT-5 Generation</h2>
+                    <p class="text-slate-400">Pioneering agentic computer use and advanced video synthesis.</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="glass-panel p-8 rounded-3xl relative overflow-hidden group">
+                        <div class="absolute -left-20 -bottom-20 w-48 h-48 bg-emerald-500/20 blur-3xl rounded-full group-hover:bg-emerald-500/30 transition-all"></div>
+                        <h3 class="text-2xl font-bold text-white mb-4">GPT-5.4 & GPT-5.4 Pro</h3>
+                        <ul class="space-y-4 text-slate-300">
+                            <li class="flex items-start gap-3">
+                                <span class="text-emerald-400 mt-1">●</span>
+                                <div><strong>March 2026 Release:</strong> The newest frontier model featuring built-in Computer Use support for screenshot-based UI interactions.</div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-emerald-400 mt-1">●</span>
+                                <div><strong>Agent Automation:</strong> 1M token context window paired with native Compaction support for long-running workflows.</div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-emerald-400 mt-1">●</span>
+                                <div><strong>Tool Search API:</strong> Defers large tool surfaces until runtime to reduce token usage and drastically improve latency.</div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="glass-panel p-8 rounded-3xl relative overflow-hidden group">
+                        <div class="absolute -right-20 -bottom-20 w-48 h-48 bg-teal-500/20 blur-3xl rounded-full group-hover:bg-teal-500/30 transition-all"></div>
+                        <h3 class="text-2xl font-bold text-white mb-4">Sora 2 & O-Series</h3>
+                        <ul class="space-y-4 text-slate-300">
+                            <li class="flex items-start gap-3">
+                                <span class="text-teal-400 mt-1">●</span>
+                                <div><strong>Sora 2 Pro:</strong> Generates up to 20-second dynamic videos in full 1080p, featuring reusable character references.</div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-teal-400 mt-1">●</span>
+                                <div><strong>o3 & o4-mini:</strong> State-of-the-art standalone reasoning models that use dedicated compute to "think before they answer."</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="glass-panel p-6 rounded-2xl flex items-center justify-between">
+                    <div>
+                        <div class="text-sm text-slate-400 uppercase tracking-wide font-semibold">Latest Framework</div>
+                        <div class="text-xl font-bold text-white">Agent Builder & ChatKit</div>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-sm text-slate-400 uppercase tracking-wide font-semibold">Max Context Window</div>
+                        <div class="text-xl font-bold text-emerald-400">1,000,000 Tokens</div>
+                    </div>
+                </div>
+            </div>
+
+            <div x-show="activeTab === 'anthropic'" x-transition.opacity.duration.500ms x-cloak class="space-y-8">
+                <div class="text-center mb-8">
+                    <h2 class="text-4xl font-bold text-gradient-anthropic mb-2">Claude 4.6</h2>
+                    <p class="text-slate-400">Industry-leading coding models with persistent extended thinking.</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="glass-panel p-8 rounded-3xl relative overflow-hidden group">
+                        <div class="absolute left-1/2 -top-20 w-48 h-48 bg-orange-500/20 blur-3xl rounded-full -translate-x-1/2 group-hover:bg-orange-500/30 transition-all"></div>
+                        <h3 class="text-2xl font-bold text-white mb-4">Claude 4.6 Opus & Sonnet</h3>
+                        <ul class="space-y-4 text-slate-300">
+                            <li class="flex items-start gap-3">
+                                <span class="text-orange-400 mt-1">●</span>
+                                <div><strong>February 2026 Release:</strong> A massive upgrade across coding, computer use, and long-context reasoning with a default 1M token beta.</div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-orange-400 mt-1">●</span>
+                                <div><strong>Extended & Adaptive Thinking:</strong> Models can work continuously for several hours, performing parallel test-time compute to solve massive structural problems.</div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-orange-400 mt-1">●</span>
+                                <div><strong>Constitutional AI Updates:</strong> New guidelines improving the model's ability to act as a genuinely helpful, nuanced agent for knowledge work.</div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="glass-panel p-8 rounded-3xl relative overflow-hidden group flex flex-col justify-center text-center">
+                        <h3 class="text-lg font-medium text-slate-400 mb-2 uppercase tracking-wide">SWE-Bench (Coding)</h3>
+                        <div class="text-6xl font-extrabold text-white mb-4 text-gradient-anthropic">72.7%</div>
+                        <p class="text-slate-300 text-sm">
+                            Claude 4 holds state-of-the-art status for agentic software engineering, deeply integrating with tools like GitHub Copilot and Cursor to execute complex, multi-file codebase updates.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="glass-panel p-6 rounded-2xl flex items-center justify-between">
+                    <div>
+                        <div class="text-sm text-slate-400 uppercase tracking-wide font-semibold">Ecosystem Tool</div>
+                        <div class="text-xl font-bold text-white">Model Context Protocol (MCP)</div>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-sm text-slate-400 uppercase tracking-wide font-semibold">Terminal-Bench Score</div>
+                        <div class="text-xl font-bold text-orange-400">43.2%</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

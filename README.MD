@@ -1,8 +1,18 @@
-# O'Reilly Live Trainining - Building Apps with Gemini
+# O'Reilly Live Training - Building Apps with Gemini
 
 ## Setup
 
-**Conda**
+**Makefile (Recommended)**
+
+The fastest way to get set up:
+
+```bash
+make all
+```
+
+This will create the conda environment, install dependencies, set up the Jupyter kernel, and compile requirements.
+
+**Conda (Manual)**
 
 - Install [anaconda](https://www.anaconda.com/download)
 - This repo was tested on a Mac with python=3.10.
@@ -13,15 +23,14 @@
 
 **Pip**
 
-
 1. **Create a Virtual Environment:**
-    Navigate to your project directory. Make sure you have python3.10 installed! 
+    Navigate to your project directory. Make sure you have python3.10 installed!
     If using Python 3's built-in `venv`: `python -m venv oreilly-gemini`
     If you're using `virtualenv`: `virtualenv oreilly-gemini`
 
 2. **Activate the Virtual Environment:**
-    - **On Windows:**: `.\oreilly-gemini\Scripts\activate`
-    - **On macOS and Linux:**: `source oreilly-gemini/bin/activate`
+    - **On Windows:** `.\oreilly-gemini\Scripts\activate`
+    - **On macOS and Linux:** `source oreilly-gemini/bin/activate`
 
 3. **Install Dependencies from `requirements.txt`:**
     ```bash
@@ -48,19 +57,26 @@ GOOGLE_API_KEY=<your google api key>
 
 ## Notebooks
 
-Here are the notebooks available in the `notebooks/` folder:
+Here are the notebooks available in the `code/` folder:
 
-1. [Gemini API Introduction](notebooks/1.0-gemini-api-intro.ipynb)
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly-live-trainings/blob/main/gemini-intro/notebooks/1.0-gemini-api-intro.ipynb)
+1. [Gemini API Introduction](code/1.0-gemini-api-intro.ipynb) - Text generation with the Gemini API
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly-live-trainings/blob/main/gemini-intro/code/1.0-gemini-api-intro.ipynb)
 
-2. [Prompting Gemini](notebooks/2.0-prompting-gemini.ipynb)
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly-live-trainings/blob/main/gemini-intro/notebooks/2.0-prompting-gemini.ipynb)
+2. [Gemini Chat, PDF & Image Understanding](code/2.0-gemini-chat-pdf-image-understanding.ipynb) - Multimodal chat with PDFs and images
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly-live-trainings/blob/main/gemini-intro/code/2.0-gemini-chat-pdf-image-understanding.ipynb)
 
-3. [Gemini Embeddings](notebooks/3.0-gemini-embeddings.ipynb)
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly-live-trainings/blob/main/gemini-intro/notebooks/3.0-gemini-embeddings.ipynb)
+3. [Gemini Embeddings](code/3.0-gemini-embeddings.ipynb) - Text embeddings and similarity search
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly-live-trainings/blob/main/gemini-intro/code/3.0-gemini-embeddings.ipynb)
 
-4. [Gemini Chat, PDF & Image Understanding](notebooks/4.0-gemini-chat-pdf-image-understanding.ipynb)
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly-live-trainings/blob/main/gemini-intro/notebooks/4.0-gemini-chat-pdf-image-understanding.ipynb)
+4. [Token Usage](code/4.0-token-usage.ipynb) - Understanding and tracking token consumption
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly-live-trainings/blob/main/gemini-intro/code/4.0-token-usage.ipynb)
 
-Additional resources can be found in:
-- `notebooks/assets-resources/` - Supporting assets and resources
+## Scripts
+
+- [`gemini_image_gen.py`](code/gemini_image_gen.py) - Generate images with Gemini and interactively keep or delete them (runnable with `uv run code/gemini_image_gen.py`)
+
+## Additional Resources
+
+- [`code/guide-prompting-gemini.md`](code/guide-prompting-gemini.md) - Comprehensive prompt engineering guide for Gemini
+- `code/assets-resources/` - Supporting PDFs, images, and reference materials
+- `presentation/` - Course presentation slides
